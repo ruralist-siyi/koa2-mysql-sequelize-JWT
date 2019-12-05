@@ -40,7 +40,7 @@ class userController {
    * @returns {Promise.<void>}
    */
   static async detail(ctx) {
-    let id = ctx.params.id;
+    const id = ctx.query.id;
 
     if (id) {
       try {
