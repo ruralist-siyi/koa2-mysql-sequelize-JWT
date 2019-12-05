@@ -9,6 +9,8 @@ router.get('/', function (ctx, next) {
 
 router.post('/create', UserController.create)
 
+router.post('/queryDetail', UserController.detail)
+
 router.get('/bar', function (ctx, next) {
   ctx.body = 'this is a users/bar response'
 })
