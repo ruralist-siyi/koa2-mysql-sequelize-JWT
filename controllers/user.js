@@ -1,4 +1,4 @@
-const UserModel = require('../models/user');
+const UserModel = require("../models/user");
 
 class userController {
   /**
@@ -8,21 +8,21 @@ class userController {
    */
   static async create(ctx) {
     let req = ctx.request.body;
-    if ((req.phone || req.email) && req.password) {
+    if ((req.userName || req.email) && req.userPassword) {
       try {
         const ret = await UserModel.createUser(req);
         const data = await UserModel.getUserDetail(ret.id);
         ctx.response.status = 200;
         ctx.body = {
           code: 200,
-          msg: '创建成功',
+          msg: "创建成功",
           data
         };
       } catch (err) {
         ctx.response.status = 412;
         ctx.body = {
           code: 200,
-          msg: '创建失败',
+          msg: "创建失败",
           data: err
         };
       }
@@ -30,7 +30,7 @@ class userController {
       ctx.response.status = 416;
       ctx.body = {
         code: 200,
-        msg: '参数不齐全'
+        msg: "参数不齐全"
       };
     }
   }
@@ -49,14 +49,14 @@ class userController {
         ctx.response.status = 200;
         ctx.body = {
           code: 200,
-          msg: '查询成功',
+          msg: "查询成功",
           data
         };
       } catch (err) {
         ctx.response.status = 412;
         ctx.body = {
           code: 412,
-          msg: '查询失败',
+          msg: "查询失败",
           data
         };
       }
@@ -64,7 +64,7 @@ class userController {
       ctx.response.status = 416;
       ctx.body = {
         code: 416,
-        msg: '用户ID必须传'
+        msg: "用户ID必须传"
       };
     }
   }
