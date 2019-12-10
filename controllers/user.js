@@ -1,4 +1,5 @@
 const UserModel = require("../models/user");
+const jwt = require('jsonwebtoken');
 
 class userController {
   /**
@@ -11,7 +12,7 @@ class userController {
     if ((req.userName || req.email) && req.userPassword) {
       try {
         const ret = await UserModel.createUser(req);
-        const data = await UserModel.getUserDetail(ret.id);
+        const data = await UserModel.getUserDetail(ret.userId);
         ctx.response.status = 200;
         ctx.body = {
           code: 200,
@@ -40,11 +41,9 @@ class userController {
    * @returns {Promise.<void>}
    */
   static async detail(ctx) {
-    const id = ctx.query.id;
-
+    const id = ctx.query.userId;
     if (id) {
       try {
-        // 查询文章详情模型
         let data = await UserModel.getUserDetail(id);
         ctx.response.status = 200;
         ctx.body = {
@@ -62,10 +61,44 @@ class userController {
       }
     } else {
       ctx.response.status = 416;
-      ctx.body = {
+      return ctx.body = {
         code: 416,
         msg: "用户ID必须传"
       };
+    }
+  }
+
+  static async login(ctx) {
+    const req = ctx.request.body;
+    if(!req.userPassword && (!req.email || !req.phone || !req.userName)) {
+      return ctx.body = {
+        code: '000001',
+        data: null,
+        msg: '参数不合法'
+      }
+    }
+    const result = await UserModel.login(req);
+    if(result) {
+      const token = jwt.sign({
+        userName: result.userName,
+        userPassword: result.userPassword
+      }, 'siyi-token', { expiresIn: '2h' });
+      return ctx.body = {
+        code: '000000',
+        data: {
+          token,
+          ...result.dataValues,
+          createTime: result.createTime,
+          updateTime: result.updateTime
+        },
+        msg: '登录成功'
+      }
+    }else {
+      return ctx.body = {
+        code: '000002',
+        data: null,
+        msg: '用户名或密码错误'
+      }
     }
   }
 }

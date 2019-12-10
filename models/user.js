@@ -18,7 +18,16 @@ class UserModel {
   static async getUserDetail(id) {
     return await User.findOne({
       where: {
-        id
+        userId: id
+      }
+    });
+  }
+
+  static async login(data) {
+    return await User.findOne({
+      where: {
+        userName: data.userName,
+        userPassword: data.userPassword
       }
     });
   }

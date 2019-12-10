@@ -7,4 +7,6 @@ router.post("/create", UserController.create);
 
 router.get("/queryDetail", UserController.detail);
 
+router.post('/login', UserController.login);
+
 module.exports = router;
