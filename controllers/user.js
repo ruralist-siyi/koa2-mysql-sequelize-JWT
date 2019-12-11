@@ -35,6 +35,7 @@ class userController {
       };
     }
   }
+
   /**
    * 获取用户详情
    * @param ctx
@@ -68,6 +69,11 @@ class userController {
     }
   }
 
+  /**
+   * 用户登录
+   * @param {*} ctx
+   * @returns {Promise.<void>}
+   */
   static async login(ctx) {
     const req = ctx.request.body;
     if(!req.userPassword && (!req.email || !req.phone || !req.userName)) {
@@ -101,6 +107,8 @@ class userController {
       }
     }
   }
+
+
 }
 
 module.exports = userController;

@@ -1,4 +1,4 @@
-const db = require('../config/db');
+const db = require('../utils/db');
 const Sequelize = db.sequelize;
 const User = Sequelize.import('../schema/user');
 

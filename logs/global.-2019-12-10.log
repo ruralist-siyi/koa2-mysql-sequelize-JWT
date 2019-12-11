@@ -1,7 +1,0 @@
-[2019-12-10T20:40:17.596] [INFO] app.js - GET /user/queryDetail?userId=1 - 15ms
-[2019-12-10T20:45:56.689] [INFO] app.js - GET /user/queryDetail?userId=1 - 57ms
-[2019-12-10T20:46:03.110] [INFO] app.js - GET /user/queryDetail?userId=1 - 11ms
-[2019-12-10T20:47:21.051] [INFO] app.js - GET /user/queryDetail?userId=1 - 25ms
-[2019-12-10T20:49:56.081] [ERROR] app.js - 401: Authorization fail
-[2019-12-10T20:50:23.981] [ERROR] app.js - 401: Authorization fail
-[2019-12-10T20:55:52.450] [INFO] global - POST /user/login - 61ms
