@@ -4,7 +4,6 @@ const views = require("koa-views");
 const json = require("koa-json");
 const onerror = require("koa-onerror");
 const bodyparser = require("koa-bodyparser");
-// const koajwt = require("koa-jwt");
 const Jwt = require('./utils/jwt');
 const errLogger = require('./utils/log').logger('error');
 const reqLogger = require('./utils/log').logger('request');
@@ -12,6 +11,7 @@ const reqLogger = require('./utils/log').logger('request');
 const index = require("./routes/index");
 const users = require("./routes/user");
 const jwt = new Jwt();
+
 // error handler
 onerror(app);
 

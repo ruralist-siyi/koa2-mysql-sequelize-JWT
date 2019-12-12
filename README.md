@@ -1,4 +1,16 @@
-####  log4js
+## 全栈实战: Node.js Koa
+
+### 技术栈
+#### 1. Koa
+#### 2. sequelize and mysql
+#### 3. log4js
+#### 4. jsonwebtoken
+
+### koa
+
+1. ctx.state: 推荐的命名空间，用于通过中间件传递信息和你的前端视图。（ssr、jwt等都有用到）
+
+###  log4js
 
 1. Level: 日志的分级，分级展示更容易让我们区分bug，更好的进行debug，也是日志区分的纬度之一；
 
@@ -8,12 +20,5 @@
 
 4. layout（格式）：通过layout自定义配置日志输出的格式；
 
-#### jwt
+### jwt
 
-
-
-
-
-#### koa
-
-1. ctx.state: 推荐的命名空间，用于通过中间件传递信息和你的前端视图。（ssr、jwt等都有用到）
