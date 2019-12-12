@@ -39,13 +39,16 @@ log4js.configure({
       pattern: "yyyy-MM-dd.log",
       daysToKeep: 30,
       compress: true
+    },
+    console: {
+      type: 'console'
     }
   },
   categories: {
-    default: { appenders: ["error"], level: "info" },
-    request: { appenders: ["request"], level: "debug" },
-    response: { appenders: ["response"], level: "debug" },
-    error: { appenders: ["error"], level: "error" }
+    default: { appenders: ["console", "console"], level: "info" },
+    request: { appenders: ["request", "console"], level: "debug" },
+    response: { appenders: ["response", "console"], level: "debug" },
+    error: { appenders: ["error", "console"], level: "error" }
   }
 });
 

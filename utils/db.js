@@ -1,4 +1,5 @@
 const Sequelize = require("sequelize");
+const reqLogger = require('../utils/log').logger('request');
 
 /**
  * 数据库配置
@@ -20,7 +21,9 @@ const config = {
 const sequelize = new Sequelize(config.database, config.user, config.password, {
   host: config.host,
   dialect: config.type,
-  logging: console.log,
+  logging: (sql) => {
+    reqLogger.debug(sql);
+  },
   dialectOptions: {
     // 字符集
     charset: "utf8mb4",
