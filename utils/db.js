@@ -10,11 +10,11 @@ const reqLogger = require('../utils/log').logger('request');
  * password：用户密码
  */
 const config = {
-  host: "47.98.40.154",
+  host: "localhost",
   type: "mysql",
   database: "lazyNote",
   user: "root",
-  password: "Zsy960914."
+  password: "000000"
 };
 
 // 连接数据库，配置线程池等
