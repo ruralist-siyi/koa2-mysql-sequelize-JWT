@@ -1,5 +1,4 @@
 const log4js = require("log4js");
-const fs = require("fs");
 const path = require("path");
 const reqFilePath = path.join(__dirname, '../logs/request/request');
 const resFilePath = path.join(__dirname, '../logs/response/response');
