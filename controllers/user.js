@@ -1,5 +1,6 @@
 const UserModel = require("../models/user");
-const jwt = require('jsonwebtoken');
+// const jwt = require('jsonwebtoken');
+const Jwt = require('../utils/jwt');
 
 class userController {
   /**
@@ -45,7 +46,7 @@ class userController {
     const id = ctx.query.userId;
     if (id) {
       try {
-        let data = await UserModel.getUserDetail(id);
+        const data = await UserModel.getUserDetail(id);
         ctx.response.status = 200;
         ctx.body = {
           code: 200,
@@ -85,14 +86,15 @@ class userController {
     }
     const result = await UserModel.login(req);
     if(result) {
-      const token = jwt.sign({
+      const jwt = new Jwt();
+      const token = jwt.generateToken({
         userName: result.userName,
-        userPassword: result.userPassword
-      }, 'siyi-token', { expiresIn: '2h' });
+        userId: result.userId
+      });
+      ctx.set('authorization', token);
       return ctx.body = {
         code: '000000',
         data: {
-          token,
           ...result.dataValues,
           createTime: result.createTime,
           updateTime: result.updateTime

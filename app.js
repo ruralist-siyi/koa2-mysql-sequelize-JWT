@@ -4,13 +4,14 @@ const views = require("koa-views");
 const json = require("koa-json");
 const onerror = require("koa-onerror");
 const bodyparser = require("koa-bodyparser");
-const koajwt = require("koa-jwt");
+// const koajwt = require("koa-jwt");
+const Jwt = require('./utils/jwt');
 const errLogger = require('./utils/log').logger('error');
 const reqLogger = require('./utils/log').logger('request');
 
 const index = require("./routes/index");
 const users = require("./routes/user");
-
+const jwt = new Jwt();
 // error handler
 onerror(app);
 
@@ -37,31 +38,20 @@ app.use(async (ctx, next) => {
   reqLogger.info(`${ctx.method} ${ctx.url} - ${ms}ms`);
 });
 
-// Authorization fail handle
-app.use((ctx, next) => {
-  return next().catch(err => {
-    if (err.status === 401) {
-      ctx.status = 401;
-      ctx.body = {
-        code: '000003',
-        msg: '未授权',
-        data: null
-      };
-      errLogger.error('401 Authorization fail handle');
-    } else {
-      errLogger.error(`${err.status}:${err.message}`);
-    }
-  });
-});
-
-// jwt verify
-app.use(
-  koajwt({
-    secret: "siyi-token"
-  }).unless({
-    path: [/\/user\/login/, /\/user\/create/]
-  })
-);
+app.use(async (ctx, next) => {
+  const result = jwt.verifyToken(ctx);
+  if(!result) {
+    ctx.status = 401;
+    ctx.body = {
+      code: '000003',
+      msg: '未授权',
+      data: null
+    };
+    errLogger.error('401 Authorization fail handle');
+    return ;
+  }
+  await next();
+})
 
 // routes
 app.use(index.routes(), index.allowedMethods());
