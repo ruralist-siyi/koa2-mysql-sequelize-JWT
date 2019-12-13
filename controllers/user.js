@@ -16,14 +16,14 @@ class userController {
         const data = await UserModel.getUserDetail(ret.userId);
         ctx.response.status = 200;
         ctx.body = {
-          code: 200,
+          code: '000000',
           msg: "创建成功",
           data
         };
       } catch (err) {
         ctx.response.status = 412;
         ctx.body = {
-          code: 200,
+          code: '000001',
           msg: "创建失败",
           data: err
         };
@@ -31,7 +31,7 @@ class userController {
     } else {
       ctx.response.status = 416;
       ctx.body = {
-        code: 200,
+        code: '000001',
         msg: "参数不齐全"
       };
     }
@@ -49,14 +49,14 @@ class userController {
         const data = await UserModel.getUserDetail(id);
         ctx.response.status = 200;
         ctx.body = {
-          code: 200,
+          code: '000000',
           msg: "查询成功",
           data
         };
       } catch (err) {
         ctx.response.status = 412;
         ctx.body = {
-          code: 412,
+          code: '000002',
           msg: "查询失败",
           data
         };
@@ -64,7 +64,7 @@ class userController {
     } else {
       ctx.response.status = 416;
       return ctx.body = {
-        code: 416,
+        code: '000001',
         msg: "用户ID必须传"
       };
     }
