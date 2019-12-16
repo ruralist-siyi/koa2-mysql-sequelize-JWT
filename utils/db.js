@@ -24,12 +24,6 @@ const sequelize = new Sequelize(config.database, config.user, config.password, {
   logging: (sql) => {
     reqLogger.debug(sql);
   },
-  dialectOptions: {
-    // 字符集
-    charset: "utf8mb4",
-    supportBigNumbers: true,
-    bigNumberStrings: true
-  },
   pool: {
     max: 5, // 连接池中最大连接数量
     min: 0, // 连接池中最小连接数量
@@ -40,7 +34,14 @@ const sequelize = new Sequelize(config.database, config.user, config.password, {
     timestamps: true,
     createdAt: "createTime",
     updatedAt: "updateTime",
-    underscored: true
+    underscored: true,
+    dialectOptions: {
+      // 字符集
+      charset: "utf8mb4",
+      collate: "utf8mb4_unicode_ci",
+      supportBigNumbers: true,
+      bigNumberStrings: true
+    },
   },
   timezone: "+08:00" //东八时区
 });

@@ -10,6 +10,8 @@ const reqLogger = require('./utils/log').logger('request');
 
 const index = require("./routes/index");
 const users = require("./routes/user");
+const objective = require("./routes/objective");
+
 const jwt = new Jwt();
 
 // error handler
@@ -56,6 +58,7 @@ app.use(async (ctx, next) => {
 // routes
 app.use(index.routes(), index.allowedMethods());
 app.use(users.routes(), users.allowedMethods());
+app.use(objective.routes(), objective.allowedMethods());
 
 // error-handling
 app.on("error", (err, ctx) => {

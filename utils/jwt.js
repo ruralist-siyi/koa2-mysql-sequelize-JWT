@@ -6,7 +6,7 @@ class Jwt {
     this.data = null;
     this.secretKey = "test-token";
     this.validTimeCount = 120 * 60 * 1000;
-    this.whiteList = ["/user/login"];
+    this.whiteList = ["/user/login", "/user/create"];
     this.refreshTimeCount = 30 * 60 * 1000;
   }
 
