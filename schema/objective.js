@@ -36,6 +36,18 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.STRING,
         allowNull: false
       },
+      status: {
+        type: DataTypes.INTEGER(2),
+        allowNull: false
+      },
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      isTop: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true
+      },
       createTime: {
         type: DataTypes.DATE,
         get() {
@@ -54,7 +66,9 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     {
-      freezeTableName: true // 如果为 true 则表的名称和 model 相同，is user no users
+      freezeTableName: true,
+      deletedAt: 'destroyTime',
+      paranoid: true
     }
   );
 };

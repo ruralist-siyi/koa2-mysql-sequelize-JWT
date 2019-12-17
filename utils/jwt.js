@@ -1,9 +1,8 @@
 const jwt = require("jsonwebtoken");
-const errLogger = require('./log').logger('error');
+const errLogger = require("./log").logger("error");
 
 class Jwt {
   constructor() {
-    this.data = null;
     this.secretKey = "test-token";
     this.validTimeCount = 120 * 60 * 1000;
     this.whiteList = ["/user/login", "/user/create"];
@@ -11,7 +10,6 @@ class Jwt {
   }
 
   generateToken(data) {
-    this.data = data || this.data;
     const createTime = Date.now();
     const token = jwt.sign(
       {
@@ -19,7 +17,7 @@ class Jwt {
         createTime
       },
       this.secretKey,
-      {expiresIn: this.validTimeCount / (60 * 60 * 1000) + 'h'}
+      { expiresIn: this.validTimeCount / (60 * 60 * 1000) + "h" }
     );
     return token;
   }
@@ -33,21 +31,18 @@ class Jwt {
     if (!this.whiteList.includes(originalUrl)) {
       try {
         const token =
-        authorization && authorization.split("Bearer ").length > 1
-          ? authorization.split("Bearer ")[1]
-          : null;
-      const result = jwt.verify(token, this.secretKey) || {};
-      this.data = result.data;
-      if(result.exp * 1000 < (Date.now() + this.refreshTimeCount)) {
-        const newToken = this.generateToken({
-          data: result.data
-        })
-        ctx.set('authorization', newToken);
-      }
-      ctx.state.user = this.data;
-      return true;
-      } catch(err) {
-        errLogger.error('JWT authorization fail', err);
+          authorization && authorization.split("Bearer ").length > 1
+            ? authorization.split("Bearer ")[1]
+            : null;
+        const result = jwt.verify(token, this.secretKey) || {};
+        if (result.exp * 1000 < Date.now() + this.refreshTimeCount) {
+          const newToken = this.generateToken(result.data);
+          ctx.set("authorization", newToken);
+        }
+        ctx.state.user = result.data;
+        return true;
+      } catch (err) {
+        errLogger.error("JWT authorization fail", err);
         return false;
       }
     } else {

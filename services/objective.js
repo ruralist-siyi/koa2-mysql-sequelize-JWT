@@ -13,7 +13,12 @@ class ObjectiveService {
         };
         return;
       }
-      const data = await ObjectiveModel.createObjective(req);
+      const data = await ObjectiveModel.createObjective({
+        ...req,
+        userId: ctx.state.user.userId,
+        isTop: 0,
+        status: 1
+      });
       ctx.response.status = 200;
       ctx.body = {
         code: "000000",
@@ -41,6 +46,49 @@ class ObjectiveService {
         code: "000000",
         msg: "创建成功",
         data
+      };
+    } catch (error) {
+      console.log(error);
+      ctx.response.status = 412;
+      ctx.body = {
+        code: "000002",
+        msg: "请求错误",
+        data: null
+      };
+    }
+  }
+
+  static async delete(ctx) {
+    const objectiveId = ctx.request.body.objectiveId;
+    try {
+      await ObjectiveModel.deleteObjectiveById(objectiveId);
+      ctx.response.status = 200;
+      ctx.body = {
+        code: "000000",
+        msg: "删除成功",
+        data: null
+      };
+    } catch (error) {
+      console.log(error);
+      ctx.response.status = 412;
+      ctx.body = {
+        code: "000002",
+        msg: "请求错误",
+        data: null
+      };
+    }
+  }
+
+  static async setTop(ctx) {
+    const objectiveId = ctx.request.body.objectiveId;
+    try {
+      await ObjectiveModel.cancelAllSetTop();
+      await ObjectiveModel.setTopById(objectiveId);
+      ctx.response.status = 200;
+      ctx.body = {
+        code: "000000",
+        msg: "置顶成功",
+        data: null
       };
     } catch (error) {
       console.log(error);

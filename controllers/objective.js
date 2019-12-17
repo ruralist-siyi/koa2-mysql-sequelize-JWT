@@ -16,6 +16,20 @@ class ObjectiveController {
   static async queryForPage(ctx) {
     await ObjectiveService.queryForPage(ctx);
   }
+
+  /**
+   * 删除目标
+   */
+  static async delete(ctx) {
+    await ObjectiveService.delete(ctx);
+  }
+
+  /**
+   * 置顶操作
+   */
+  static async setTop(ctx) {
+    await ObjectiveService.setTop(ctx);
+  }
 }
 
 module.exports = ObjectiveController;

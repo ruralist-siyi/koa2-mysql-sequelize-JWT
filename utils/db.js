@@ -34,6 +34,7 @@ const sequelize = new Sequelize(config.database, config.user, config.password, {
     timestamps: true,
     createdAt: "createTime",
     updatedAt: "updateTime",
+    // deletedAt: "deleteFlag",
     underscored: true,
     dialectOptions: {
       // 字符集
