@@ -1,4 +1,4 @@
-## 全栈实战: Node.js Koa2
+## Node.js实战开发
 
 > 这是一个开发中的项目，持续commit，敬请期待
 
@@ -13,4 +13,4 @@
 
 ##### 2. start mysql(安装、创建database：test)
 
-###### 3. 开发环境：yarn/npm run dev; 生产环境： yarn/npm run prd;
+##### 3. 开发环境：yarn/npm run dev; 生产环境： yarn/npm run prd;
