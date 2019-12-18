@@ -1,6 +1,13 @@
 const jwt = require("jsonwebtoken");
 const errLogger = require("./log").logger("error");
 
+/**
+ * JWT class
+ * secretKey：密钥
+ * validTimeCount： 有效时间
+ * refreshTimeCount： refresh 检测时间
+ * whiteList： 接口白名单
+ */
 class Jwt {
   constructor() {
     this.secretKey = "test-token";

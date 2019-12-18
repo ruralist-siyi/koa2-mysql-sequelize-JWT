@@ -10,11 +10,11 @@ const reqLogger = require('../utils/log').logger('request');
  * password：用户密码
  */
 const config = {
-  host: "47.98.40.154",
+  host: "localhost",
   type: "mysql",
-  database: "lazyNote",
+  database: "koa",
   user: "root",
-  password: "Zsy960914."
+  password: "123456"
 };
 
 // 连接数据库，配置线程池等
@@ -34,7 +34,6 @@ const sequelize = new Sequelize(config.database, config.user, config.password, {
     timestamps: true,
     createdAt: "createTime",
     updatedAt: "updateTime",
-    // deletedAt: "deleteFlag",
     underscored: true,
     dialectOptions: {
       // 字符集
