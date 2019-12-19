@@ -31,6 +31,17 @@ class UserModel {
       }
     });
   }
+
+  /**
+   * 查询是否有重名的人
+   */
+  static async findSameNameUser(data) {
+    return await User.findOne({
+      where: {
+        userName: data.userName
+      }
+    })
+  }
 }
 
 module.exports = UserModel;

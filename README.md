@@ -1,12 +1,13 @@
 ## Node.js实战开发
 
-> 这是一个开发中的项目，持续commit，敬请期待
+> 这是一个开发中的项目，已实现部分接口，持续commit，敬请期待
 
-### 1. 技术栈
-#### 1. Koa2
-#### 2. sequelize and mysql（ORM框架 and 数据库）
-#### 3. log4js（日志记录）
-#### 4. jsonwebtoken （权限认证）
+#### 1. 技术栈
+##### 1. Koa2
+##### 2. sequelize and mysql（ORM框架 and 数据库）
+##### 3. log4js（日志记录）
+##### 4. jsonwebtoken （权限认证）
+
 
 #### 2. 启动项目
 ##### 1. yarn / npm install（安装依赖）

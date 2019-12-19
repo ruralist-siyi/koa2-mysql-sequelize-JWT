@@ -9,4 +9,6 @@ router.get("/queryDetail", UserController.detail);
 
 router.post('/login', UserController.login);
 
+router.delete('/logout', UserController.logout);
+
 module.exports = router;

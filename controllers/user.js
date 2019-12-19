@@ -1,4 +1,5 @@
 const UserModel = require("../models/user");
+const UserService = require('../services/user');
 const Jwt = require('../utils/jwt');
 
 class userController {
@@ -9,8 +10,25 @@ class userController {
    */
   static async create(ctx) {
     let req = ctx.request.body;
-    if ((req.userName || req.email) && req.userPassword) {
+    if (req.userName && req.userPassword) {
       try {
+        if(req.userName < 4 || req.userPassword.length < 6) {
+          ctx.body = {
+            code: '000001',
+            msg: "输入信息长度过短",
+            data: null
+          };
+          return;
+        }
+        const sameNameData = await UserModel.findSameNameUser(req);
+        if(sameNameData) {
+          ctx.body = {
+            code: '000001',
+            msg: "用户名已存在",
+            data: null
+          };
+          return;
+        }
         const ret = await UserModel.createUser(req);
         const data = await UserModel.getUserDetail(ret.userId);
         ctx.response.status = 200;
@@ -107,6 +125,10 @@ class userController {
         msg: '用户名或密码错误'
       }
     }
+  }
+
+  static async logout(ctx) {
+    await UserService.logout(ctx);
   }
 
 
