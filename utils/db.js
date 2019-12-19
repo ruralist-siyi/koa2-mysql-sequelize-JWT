@@ -12,7 +12,7 @@ const reqLogger = require('../utils/log').logger('request');
 const config = {
   host: "localhost",
   type: "mysql",
-  database: "koa",
+  database: "test",
   user: "root",
   password: "123456"
 };
