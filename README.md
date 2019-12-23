@@ -1,11 +1,9 @@
 # Node.js实战开发(此项目附有前端taro.js项目：[taro-dva-lazyNotebook](https://github.com/ruralist-siyi/taro-dva-lazyNotebook))
 
 ### 应用截图
-<center class="half">
+<figure class="third">
     <img src="https://github.com/ruralist-siyi/taro-dva-lazyNotebook/blob/master/src/assets/img/lp1.gif" width="200"/><img src="https://github.com/ruralist-siyi/taro-dva-lazyNotebook/blob/master/src/assets/img/lp2.gif" width="200"/><img src="https://github.com/ruralist-siyi/taro-dva-lazyNotebook/blob/master/src/assets/img/WechatIMG6.jpeg" width="200"/>
-    <img src="https://github.com/ruralist-siyi/taro-dva-lazyNotebook/blob/master/src/assets/img/WechatIMG9.jpeg" width="200"/>
-    <img src="https://github.com/ruralist-siyi/taro-dva-lazyNotebook/blob/master/src/assets/img/WechatIMG7.jpeg" width="200"/>
-</center>
+</figure>
 
 ### 一. 技术栈
 #### 1. Koa2
