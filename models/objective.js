@@ -13,8 +13,8 @@ class ObjectiveModel {
   static async createObjective(data) {
     return await Objective.create({
       objectiveId: data.objectiveId,
-      startTime: data.startTime,
-      endTime: data.endTime,
+      startTime: new Date(data.startTime),
+      endTime: new Date(data.endTime),
       weight: data.weight,
       content: data.content,
       userId: data.userId,

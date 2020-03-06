@@ -26,9 +26,9 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.STRING,
         allowNull: true,
         field: "email",
-        validate: {
-          isEmail: true
-        }
+        // validate: {
+        //   isEmail: true
+        // }
       },
       createTime: {
         type: DataTypes.DATE,

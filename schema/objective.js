@@ -14,7 +14,7 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.DATE,
         allowNull: false,
         get() {
-          return moment(this.getDataValue("start_Time")).format(
+          return moment(this.getDataValue("startTime")).format(
             "YYYY-MM-DD HH:mm:ss"
           );
         }
@@ -23,7 +23,7 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.DATE,
         allowNull: false,
         get() {
-          return moment(this.getDataValue("end_Time")).format(
+          return moment(this.getDataValue("endTime")).format(
             "YYYY-MM-DD HH:mm:ss"
           );
         }

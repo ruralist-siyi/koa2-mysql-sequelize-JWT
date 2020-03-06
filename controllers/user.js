@@ -41,7 +41,7 @@ class userController {
         ctx.response.status = 412;
         ctx.body = {
           code: '000001',
-          msg: "创建失败",
+          msg: err.messsage || "创建失败",
           data: err
         };
       }
