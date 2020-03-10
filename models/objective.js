@@ -39,11 +39,14 @@ class ObjectiveModel {
    * @param {*} data data
    */
   static async queryForPage(data) {
-    const {size, page} = data;
+    const {size, page, userId} = data;
     return await Objective.findAndCountAll({
       limit: size,
       offset: size * (page - 1),
-      order: [['isTop', 'DESC'], ['weight', 'DESC']]
+      order: [['isTop', 'DESC'], ['weight', 'DESC']],
+      where: {
+        userId
+      }
     })
   }
 

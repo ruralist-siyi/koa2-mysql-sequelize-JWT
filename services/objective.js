@@ -39,8 +39,9 @@ class ObjectiveService {
   static async queryForPage(ctx) {
     const page = Number(ctx.query.page) || 1;
     const size =  Number(ctx.query.size) || 10;
+    const userId = ctx.state.user.userId;
     try {
-      const data = await ObjectiveModel.queryForPage({page, size});
+      const data = await ObjectiveModel.queryForPage({page, size, userId});
       ctx.response.status = 200;
       ctx.body = {
         code: "000000",
