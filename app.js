@@ -4,6 +4,7 @@ const views = require("koa-views");
 const json = require("koa-json");
 const onerror = require("koa-onerror");
 const bodyparser = require("koa-bodyparser");
+const cors = require('koa2-cors');
 const Jwt = require('./utils/jwt');
 const errLogger = require('./utils/log').logger('error');
 const reqLogger = require('./utils/log').logger('request');
