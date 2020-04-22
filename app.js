@@ -17,7 +17,9 @@ const jwt = new Jwt();
 // error handler
 onerror(app);
 
-// middlewares
+// cors
+app.use(cors());
+
 app.use(
   bodyparser({
     enableTypes: ["json", "form", "text"]
